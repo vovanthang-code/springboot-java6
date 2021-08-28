@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(body)">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta charset="UTF-8"/>
+    <title>Trang chủ</title>
+    <!-- bootstrap -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/assets/css/common.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- CSS -->
+    <link href="http://static.runtime.vn/App_Themes/RUN027/style.css" rel="stylesheet" type="text/css"/>
+	<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<div class="wrapper page-home">
+	    <div class="header"> <div th:replace="layout/_header.html"></div> </div>
+	    <div class="container"> <div th:replace="layout/_container.html"></div> </div>
+	    <div class="main"> <div th:replace="${body}"></div> </div>
+	    <div class="footer"> <div th:replace="layout/_footer.html"></div> </div>
+	</div>
+	<script src="/assets/js/shopping-cart-app.js"></script>
+</body>
+</html>

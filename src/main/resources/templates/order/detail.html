@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://wwww.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::body})}">
+
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+	<div class="container" th:object="${order}">
+		<div class="row">
+			<div class="col-md-12">
+
+				<div class="breadcrumb clearfix">
+					<ul>
+						<li itemtype="http://shema.org/Breadcrumb" itemscope=""
+							class="home"><a title="Đến trang chủ" href="/"
+							itemprop="url"><span itemprop="title">Trang chủ</span></a></li>
+						<li class="icon-li"><strong>Hoàn tất</strong></li>
+					</ul>
+				</div>
+				<div class=" payment-end">
+					<div class="payment-order clearfix">
+						<h3>
+							Mã đơn hàng của bạn: <b th:text="*{id}"></b>
+						</h3>
+						<p style="font-size: 13pt">
+							<b>Họ và tên:</b> <i th:text="*{account.username}"></i>
+						</p>
+						<p style="font-size: 13pt">
+							<b>Địa chỉ nhận hàng:</b> <i th:text="*{address}"></i>
+						</p>
+						<h1>Thông tin đơn hàng</h1>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Sản phâm</th>
+									<th>Đơn giá</th>
+									<th>Số lượng</th>
+									<th>Thành tiền</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="detail : *{orderDetails}" th:object="${detail}">
+									<td>[[*{product.id}]]</td>
+									<td>[[*{product.name}]]</td>
+									<td>$[[*{#numbers.formatDecimal(price, 0, 'COMMA', 2,
+										'POINT')}]]</td>
+									<td>[[*{quantity}]]</td>
+									<td>[[*{#numbers.formatDecimal(price*quantity,
+										0,'COMMA',2,'POINT')}]]</td>
+								</tr>
+							</tbody>
+						</table>
+						<span class="print-order"><a href="#"><i
+								class="fa fa-print"></i>In đơn hàng</a></span>
+					</div>
+					<div class="clearfix col-md-12">
+						<div class="button text-right">
+							<a class="btn btn-default" href="/">Tiếp tục mua hàng</a> <a
+								class="btn btn-primary" th:href="@{/order/list}">Đơn hàng của
+								tôi</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".menu-quick-select ul").hide();
+			$(".menu-quick-select").hover(function() {
+				$(".menu-quick-select ul").show();
+			}, function() {
+				$(".menu-quick-select ul").hide();
+			});
+			$(".carousel").hide();
+		});
+	</script>
+</body>
+</html>

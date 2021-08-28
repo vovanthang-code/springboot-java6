@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwww.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::body})}">
+
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="container" th:object="${item}">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="box-sale-policy">
+					<h3>
+						<span>Chính sách bán hàng</span>
+					</h3>
+					<div class="sale-policy-block">
+						<ul>
+							<li>Giao hàng TOÀN QUỐC</li>
+							<li>Thanh toán khi nhận hàng</li>
+							<li>Đổi trả trong <span>15 ngày</span></li>
+							<li>Hoàn ngay tiền mặt</li>
+							<li>Chất lượng đảm bảo</li>
+							<li>Miễn phí vận chuyển:<span>Đơn hàng từ 3 món trở
+									lên</span></li>
+						</ul>
+					</div>
+					<div class="buy-guide">
+						<h3>Hướng Dẫn Mua Hàng</h3>
+						<ul>
+							<li>Mua hàng trực tiếp tại website <b> {{shop.Website}}</b>
+							</li>
+							<li>Gọi điện thoại <strong> {{shop.Hotline}} </strong> để
+								mua hàng
+							</li>
+							<li>Mua tại Trung tâm CSKH:<br /> <strong>{{shop.Address}}</strong>
+								<a href="/ban-do.html" rel="nofollow" target="_blank">Xem
+									Bản Đồ</a>
+							</li>
+							<li>Mua sỉ/buôn xin gọi <strong> {{shop.Hotline}} </strong>
+								để được hỗ trợ.
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- ------------------------------------------------------------------------------------------------- -->
+
+			</div>
+			<div class="col-md-9" >
+				<div class="row">
+					<div class="col-md-6">
+						<img th:src="@{|/assets/images/*{image}|}" class="img-thumbnail"
+							alt="Responsive image">
+					</div>
+					<div class="col-md-6">
+						<b th:text="*{name}" style="font-size: 20pt"></b> <br><br> <span
+							class="price-new" style="font-size: 15pt; color: #429a9d">$[[*{price}]]&nbsp;₫</span><br>
+						<hr style="background: black;"><br>
+						<span class="price-new" style="font-size: 13pt;">Ngày tạo :
+							[[*{createDate}]]</span> <br><br>
+							<span class="price-new"
+							style="font-size: 13pt;">Danh mục : [[*{category.name}]]</span> <br><br>
+						<hr style="background: black;">
+						<br><br>
+						<button style="font-size: 10pt;" class="btn btn-success float-right" th:attr="ng-click=@{|cart.add(*{id})|}">Thêm vào giỏ hàng <i class="fa fa-shopping-cart    "></i></button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="box-product col-md-12">
+				<h3>
+					<span> Sản phẩm cùng loại </span>
+				</h3>
+				<div class="box-product-block">
+					<div class="item col-md-3 col-sm-3 col-xs-12" th:each="p : *{category.products}">
+						<div class="image image-resize">
+							<a
+								th:href="@{|/product/detail/${p.id}|}"
+								th:title="${p.name}">
+								<img th:src="@{|/assets/images/${p.image}|}"
+								class="img-responsive" style="width: 100%; height: 265px" />
+							</a>
+							<div class="view-more clearfix">
+								<a
+									th:href="@{|/product/detail/${p.id}|}"
+									class="btn-quickview">Xem thêm</a>
+							</div>
+						</div>
+						<div class="right-block">
+							<h2 class="name">
+								<a
+									th:href="@{|/product/detail/${p.id}|}"
+									th:title="${p.name}"></a>
+							</h2>
+							<div class="ratings clearfix">
+								<div class="rating-box">
+									<div class="rating"></div>
+								</div>
+							</div>
+							<div class="price">
+								<span class="price-new">$[[${p.price}]]&nbsp;₫</span>
+							</div>
+							<div class="addtocart-button clearfix">
+								<a th:attr="ng-click=@{|cart.add(*{id})|}"
+									class="add-to-cart"><span></span>Mua ngay</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".menu-quick-select ul").hide();
+			$(".menu-quick-select").hover(function() {
+				$(".menu-quick-select ul").show();
+			}, function() {
+				$(".menu-quick-select ul").hide();
+			});
+			$(".carousel").hide();
+		});
+	</script>
+</body>
+
+</html>

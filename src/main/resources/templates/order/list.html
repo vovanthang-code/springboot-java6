@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwww.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="container" th:fragment="shopping_cart">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="cart-content">
+					<h1 class="title">
+						<span>Đơn hàng của tôi</span>
+					</h1>
+					<div class="cart-block">
+						<div class="cart-info table-responsive">
+							<table class="table product-list">
+								<thead>
+									<tr>
+										<th>STT</th>
+										<th>Id order</th>
+										<th>Ngày đặt</th>
+										<th>Địa chỉ</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="order, state : ${orders}">
+										<td>[[${state.index}]]</td>
+										<td>[[${order.id}]]</td>
+										<td>[[${order.createDate}]]</td>
+										<td>[[${order.address}]]</td>
+										<td class="remove"><a th:href="@{|/order/detail/${order.id}|}">
+												<i class="fa fa-search"></i>
+										</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".menu-quick-select ul").hide();
+			$(".menu-quick-select").hover(function() {
+				$(".menu-quick-select ul").show();
+			}, function() {
+				$(".menu-quick-select ul").hide();
+			});
+			$(".carousel").hide();
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!-- -------------------------------------------top header-------------------------------------------- -->
+<section class="top-link clearfix" xmlns:th="http://wwww.thymeleaf.org">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="nav navbar-nav topmenu-contact pull-left">
+					<li><i class="fa fa-phone"></i> <span>Hotline:034 933
+							2077</span></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm">
+					<th:block th:unless="${#request.remoteUser}">
+						<li class="account-login"><a
+							th:href="@{/security/login/form}"> <i class="fa fa-sign-in"></i>
+								Đăng nhập
+						</a></li>
+					</th:block>
+					<th:block th:if="${#request.remoteUser}">
+						<li class="account-register"><a th:href="@{/security/logoff}"> <i
+								class="fa fa-key"></i> Đăng xuất
+						</a></li>
+						<li class="order-check"><a th:href="@{/order/list}">
+								<i class="fa fa-pencil-square-o"></i> Kiểm tra đơn hàng
+						</a></li>
+						<li class="account-register" th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}"><a th:href="@{/admin/home/index}"> <i
+								class="fa fa-key"></i> Administration
+						</a></li>
+					</th:block>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- ------------------------------------------header content--------------------------------------------- -->
+<section class="header-content clearfix">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 col-xs-12 col-sm-12 header-left text-center">
+				<div class="logo">
+					<a href="/" title=""> <img alt="" src="/assets/images/poly.png"
+						class="img-responsive" />
+					</a>
+				</div>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 header-right pull-right">
+
+				<div class="cart">
+					<div class="heading">
+						<a th:href="@{/cart/view}"> <span class="icon">icon</span><span
+							id="cart-total"> {{cart.count}} item x {{cart.amount |
+								number : 2}} </span><i class="fa fa-arrow-right"></i>
+						</a>
+					</div>
+				</div>
+				<div class="search hidden-sm hidden-xs">
+					<div class="input-cat form-search clearfix">
+						<div class="form-search-controls">
+							<input type="text" name="search" id="txtsearch"
+								onblur="if(this.value=='')this.value='Tìm kiếm...'"
+								onfocus="if(this.value=='Tìm kiếm...')this.value=''"
+								value="Tìm kiếm..." />
+
+						</div>
+						<button class="btn btn-search" title="Search" type="button"
+							id="btnsearch" value="Search">
+							<i class="fa fa-search"></i>
+						</button>
+					</div>
+				</div>
+				<div class="social-group"></div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- ------------------------------------------menu--------------------------------------------- -->
+<section class="navigation-menu clearfix">
+	<div class="container">
+		<div class="menu-top">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="menu-cate menu-quick-select">
+						<div class="menu-cate-title">
+							<span><i class="fa fa-th-list"></i><a
+								href="#">Danh mục sản phẩm</a></span>
+
+						</div>
+						<ul class="menu-cate-content"
+							style="height: 400px; overflow-x: hidden; overflow-y: auto;">
+							<li th:each="c,state : ${cates}"><a
+								th:href="@{|/product/list?cid=${c.id}|}"><i
+									class="fa fa-leaf"></i>[[${c.name}]]</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-9 ">
+					<nav class="navbar nav-menu">
+						<div class="navbar-header">
+							<button class="navbar-toggle collapsed" type="button"
+								data-toggle="collapse" data-target="#mobile-menu"
+								aria-controls="mobile-menu" aria-expanded="false">
+								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+						</div>
+						<nav id="mobile-menu" class="mobile-menu collapse navbar-collapse">
+							<ul class='menu nav navbar-nav'>
+								<li class="level0"><a class='' href='/'><span>Trang chủ</span></a></li>
+								<li class="level0"><a class='' href='/'><span>Giới thiệu</span></a></li>
+								<li class="level0"><a class='' href='/'><span>Sản phẩm</span></a></li>
+								<li class="level0"><a class='' href='/'><span>Tin tức</span></a></li>
+								<li class="level0"><a class='' href='/'><span>Liên hệ</span></a></li>
+							</ul>
+						</nav>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- --------------------------------------------------------------------------------------- -->
