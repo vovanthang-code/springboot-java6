@@ -11,7 +11,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
 			var item = this.items.find(item => item.id == id);
 			if(item){
 				item.qty++;
-				this.savaToLocalStorage();
+				this.saveToLocalStorage();
 			}else{
 				$http.get(`/rest/products/${id}`).then(resp => {
 					resp.data.qty = 1;
